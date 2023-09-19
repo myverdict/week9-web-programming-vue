@@ -13,7 +13,7 @@ VueJS first project
   <li>Lab 8 repository</li>
 </ul>
 
-<a href="https://myverdict.github.io/week7-web-programming-javascript/index.html">
+<a href="https://myverdict.github.io/week9-web-programming-vue/index.html">
   Click here to view live!
 </a>
 
