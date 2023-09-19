@@ -1,37 +1,39 @@
 <!-- development version, includes helpful console warnings -->
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 <!-- This is what the user will see. This is a template with placeholders. -->
 <div id="app">
   <h1>Hello Vue!</h1>
 
-  <!--
-    <p>{{ message }}</p>                    // this is a directive
-    <p>{{ message.toUpperCase() }}</p>      // with JavaScript
-  -->
+  <!-- this is a directive -->
+  <!-- <p>{{ message }}</p> -->
+  <!-- with JavaScript -->
+  <!-- <p>{{ message.toUpperCase() }}</p> -->
 
-  <p>{{ message | uppercase }}</p>
-  <!-- with Vue JS filters -->
+  <!-- This is a computed property -->
+  <p>{{ msgInUppercase }}</p>
 
   <p>This class is ITEC {{ classCode }}, {{ className }}.</p>
 
   <button v-on:click="addExclamation">Add !</button>
-
   <button v-on:click="clear">Clear !</button>
 </div>
 
 <!-- Set up the vue model: data that the app is going to use -->
 <script>
-  let app = new Vue({
-    el: "#app",
-    data: {
-      message: "Welcome Web Students!",
-      className: "Web Client & Server Programming",
-      classCode: 2560,
-      numberOfExclamationPoints: 1,
+  const { createApp } = Vue;
+
+  createApp({
+    data() {
+      return {
+        message: "Welcome Web Students!",
+        className: "Web Client & Server Programming",
+        classCode: 2560,
+        numberOfExclamationPoints: 1,
+      };
     },
     methods: {
-      addExclamation: function () {
+      addExclamation() {
         if (this.numberOfExclamationPoints < 5) {
           this.message = this.message + "!";
           this.numberOfExclamationPoints++;
@@ -39,16 +41,16 @@
           alert("No more exclamation points!");
         }
       },
-      clear: function () {
+      clear() {
         // reset the message
         this.message = "Welcome Web Students!";
         this.numberOfExclamationPoints = 1;
       },
     },
-    filters: {
-      uppercase: function (string) {
-        return string.toUpperCase();
+    computed: {
+      msgInUppercase() {
+        return this.message.toUpperCase();
       },
     },
-  });
+  }).mount("#app");
 </script>
