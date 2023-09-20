@@ -7,10 +7,10 @@ VueJS first project
 <h2>Week 9 Labs: VueJS Introduction</h2>
 
 <ul>
-  <li>Vue.js application for adding & clearing exclamation points</li>
-  <li>Vue.js application for creating inputs</li>
-  <li>Vue.js application for a shopping cart</li>
-  <li>Lab 8 repository</li>
+  <li>Vue.js application for adding & clearing exclamation points (Vue 3 Options API)</li>
+  <li>Vue.js application for creating inputs (Vue 3 Options API)</li>
+  <li>Vue.js application for a shopping cart (Vue 3 Options API)</li>
+  <li>Lab 8 repository (Vue 2)</li>
 </ul>
 
 <a href="https://myverdict.github.io/week9-web-programming-vue/index.html">
