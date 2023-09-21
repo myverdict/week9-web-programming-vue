@@ -1,10 +1,10 @@
 # week9-web-programming-vue
 
-VueJS first project
+Vue 3 Introduction
 
 <h1>WEB PROGRAMMING</h1>
 
-<h2>Week 9 Labs: VueJS Introduction</h2>
+<h2>Week 9 Labs: Vue 3 Introduction</h2>
 
 <ul>
   <li>Product purchase (Vue 3: Options API)</li>
