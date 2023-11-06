@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla JS Shopping Cart</title>
+
+    <style>
+      body {
+        margin: 20px;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      th {
+        color: firebrick;
+        background-color: khaki;
+        font-size: large;
+      }
+      td,
+      th {
+        width: 25%;
+        text-align: center;
+        padding: 10px;
+        border: 2px blue solid;
+      }
+      #quantity {
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h1>Example Shopping Cart: Vanilla JavaScript</h1>
+
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+
+        <tr>
+          <td id="name"></td>
+          <td id="unitPrice"></td>
+          <td><input type="number" id="quantity" /></td>
+          <td id="totalPrice"></td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      let data = {
+        name: 'Hat',
+        quantity: 1,
+        unitPrice: 4.99,
+      };
+
+      let nameEl = document.querySelector('#name');
+      let unitPriceEl = document.querySelector('#unitPrice');
+      let quantityInputEl = document.querySelector('#quantity');
+      let totalPriceEl = document.querySelector('#totalPrice');
+
+      nameEl.innerText = data.name;
+      unitPriceEl.innerText = data.unitPrice;
+      quantityInputEl.value = data.quantity;
+
+      function updateTotal() {
+        let total = quantityInputEl.value * unitPrice.innerText;
+        // display 2 decimal places
+        totalPriceEl.innerText = total.toFixed(2);
+      }
+
+      quantityInputEl.addEventListener('input', function () {
+        updateTotal();
+      });
+
+      // required for display of totalPrice the first time web page is loaded
+      updateTotal();
+    </script>
+  </body>
+</html>

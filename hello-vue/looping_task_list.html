@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task list from input</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <!-- this is the VIEW; also referred to as the template -->
+    <!-- Everything in this div has access to the Vue 'app' -->
+    <div id="app">
+      <h1>Vue 3 Loops: v-for - task list from input</h1>
+
+      <!-- Note: label for and input id must match -->
+      <label for="task">Please enter your to-do task: </label>
+      <!-- v-model creates a 2 way binding (template to data & data to template) for the input -->
+      <input id="task" v-model="newTask" autofocus />
+
+      <!-- when the click event happens, the addTask method is triggered -->
+      <button v-on:click="addTask">Add Task</button>
+
+      <h2>Your task list</h2>
+      <ul>
+        <!-- Looping though the taskList array & displaying the list -->
+        <li v-for="task in taskList">{{ task }}</li>
+      </ul>
+    </div>
+
+    <!-- this is the VIEWMODEL -->
+    <script>
+      // this creates the Vue instance
+      const app = Vue.createApp({
+        // data is the MODEL
+        // the data option for a component is a function & it returns an object.
+        // ES6 shorthand for --> data: function() {
+        data() {
+          return {
+            newTask: '',
+            taskList: [],
+          };
+        },
+        methods: {
+          addTask() {
+            // 'this' refers to the component instance
+            // if there a newTask entered in the input
+            // validating for spaces also
+            if (this.newTask.trim()) {
+              // add the task entered in the input to the taskList array
+              this.taskList.push(this.newTask);
+              // clear the newTask input
+              this.newTask = ''; // clear text entered in the input
+            }
+          },
+        },
+      });
+
+      // Mount App: To mount the app into our DOM, which effectively
+      // plugs our app into the #app div in the html above
+      const mountedApp = app.mount('#app');
+    </script>
+  </body>
+</html>

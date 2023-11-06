@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3 Shopping Cart</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+      body {
+        margin: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th {
+        color: firebrick;
+        background-color: khaki;
+        font-size: large;
+      }
+
+      td,
+      th {
+        width: 25%;
+        text-align: center;
+        padding: 10px;
+        border: 2px blue solid;
+      }
+
+      #quantity {
+        padding: 5px;
+      }
+
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- this is the VIEW; also referred to as the template -->
+    <!-- Everything in this div has access to the Vue 'app' -->
+    <div id="app">
+      <h1>Example Shopping Cart: Vue 3</h1>
+
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+
+        <tr>
+          <td>{{ name }}</td>
+          <td>{{ unitPrice }}</td>
+          <td>
+            <!-- v-model creates a 2 way binding (template to data & data to template) for the quantity input -->
+            <!-- the 'number' modifier will convert the text entered to a number, if a conversion is possible -->
+            <input type="number" id="quantity" v-model.number="quantity" />
+
+            <div class="error" v-if="quantityError">{{ quantityError }}</div>
+          </td>
+          <!-- Only display totalPrice if there is no error -->
+          <td>
+            <div v-if="quantityError" class="error">Invalid Quantity</div>
+            <!-- this is a computed property -->
+            <div v-else>${{ totalPrice }}</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- this is the VIEWMODEL -->
+    <script>
+      // this creates a vue instance
+      const app = Vue.createApp({
+        // data is the MODEL
+        // the data option for a component is a function & it returns an object.
+        // ES6 shorthand for --> data: function() {
+        data() {
+          return {
+            name: 'Hat',
+            quantity: 1,
+            unitPrice: 4.99,
+            maxQuantity: 20,
+            quantityError: '',
+          };
+        },
+        // use computed properties where computation is involved
+        computed: {
+          totalPrice() {
+            // clear errors if any
+            this.quantityError = '';
+
+            // set an error message if the new value of quantity is not an integer
+            if (!Number.isInteger(this.quantity)) {
+              this.quantityError = 'Quantity must be a number';
+            }
+            // set an error message if the new value is less than 0 or greater than maxQuantity
+            else if (this.quantity < 0 || this.quantity > this.maxQuantity) {
+              this.quantityError = 'Quantity must be between 0 and 20';
+            }
+            // if valid values are entered
+            else {
+              // compute the totalPrice
+              let total = this.quantity * this.unitPrice;
+              return total.toFixed(2);
+            }
+          },
+        },
+      });
+
+      // Mount App: To mount the app into our DOM, which effectively
+      // plugs our app into the #app div in the html above
+      const mountedApp = app.mount('#app');
+    </script>
+  </body>
+</html>

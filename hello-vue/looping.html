@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue 3: v-for looping</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <!-- this is the VIEW; also referred to as the template -->
+    <!-- Everything in this div has access to the Vue 'app' -->
+    <div id="app">
+      <h1>Task List</h1>
+
+      <ul>
+        <!-- This v-for will be duplicated, once for each task in the taskList array -->
+        <li v-for="task in taskList">{{ task }}</li>
+      </ul>
+    </div>
+
+    <!-- this is the VIEWMODEL -->
+    <script>
+      // this creates the Vue instance
+      const app = Vue.createApp({
+        // data is the MODEL
+        // the data option for a component is a function & it returns an object.
+        // ES6 shorthand for --> data: function() {
+        data() {
+          return {
+            taskList: ['Water plants', 'Feed cat', 'Do taxes'],
+          };
+        },
+      });
+
+      // Mount App: To mount the app into our DOM, which effectively
+      // plugs our app into the #app div in the html above
+      const mountedApp = app.mount('#app');
+    </script>
+  </body>
+</html>

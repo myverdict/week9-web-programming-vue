@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue 3 shortcuts: Dog API</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+      .dog-image {
+        max-height: 600px;
+        max-width: 600px;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- this is the VIEW; also referred to as the template -->
+    <!-- Everything in this div has access to the Vue 'app' -->
+    <div id="app">
+      <h1>Dog API</h1>
+
+      <div class="error" v-if="error">{{ error }}</div>
+
+      <div v-if="image">
+        <p>Here is a random corgi dog picture</p>
+
+        <img class="dog-image" :src="image" /><br />
+
+        <!-- when the click event happens, the newDogImage method is triggered -->
+        <button @click="newDogImage" :disabled="requestInProgress">
+          Another!
+        </button>
+      </div>
+
+      <p>Images from the <a href="https://dog.ceo/dog-api/">Dog API</a></p>
+    </div>
+    <!-- end of #app div -->
+
+    <!-- this is the VIEWMODEL -->
+    <script>
+      // this creates a Vue instance
+      const app = Vue.createApp({
+        // data is the MODEL
+        // the data option for a component is a function & it returns an object.
+        // ES6 shorthand for --> data: function() {
+        data() {
+          return {
+            image: '',
+            error: '',
+            requestInProgress: false,
+          };
+        },
+        // Lifecycle hook: a function called after the DOM/Vue instance has been mounted/rendered (browser updated)
+        // most often used to send an HTTP request to fetch data that the component will then render
+        mounted() {
+          // 'this' refers to the component instance
+          this.newDogImage();
+        },
+        methods: {
+          newDogImage() {
+            // prevent any more requests while this one is in progress
+            this.requestInProgress = true;
+
+            // fetch request
+            fetch('https://dog.ceo/api/breed/eskimo/images/random')
+              .then((response) => response.json())
+              .then((dogImageJSON) => {
+                /*
+                  An example response looks like this, message property has the image URL
+                  {
+                    "message": "https://images.dog.ceo/breeds/corgi-cardigan/n02113186_6539.jpg",
+                    "status": "success"
+                  }
+                */
+                // 'this' refers to the component instance
+                this.image = dogImageJSON.message; // set the image src url
+              })
+              .catch((err) => {
+                console.log('Error fetching dog picure because', err);
+                // 'this' refers to the component instance
+                this.error = 'Sorry! Could not fetch dog picture ';
+              })
+              .finally(() => {
+                // 'this' refers to the component instance
+                // allow another request to be made. This code will always run
+                // if everything worked or if there was an error
+                this.requestInProgress = false;
+              });
+          },
+        },
+      });
+
+      // Mount App: To mount the app into our DOM, which effectively
+      // plugs our app into the #app div in the html above
+      app.mount('#app');
+    </script>
+  </body>
+</html>

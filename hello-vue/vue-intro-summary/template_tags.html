@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello Vue Template Tags</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+
+  <body>
+    <!-- this is the VIEW; also referred to as the template -->
+    <!-- Everything in this div has access to the Vue 'app' -->
+    <div id="app">
+      <h1>Data and Template Examples</h1>
+
+      <hr />
+
+      <h2>
+        Using data in templates with mustache syntax
+        <span class="mono">&#123; &#123; &#125; &#125;</span>
+      </h2>
+
+      <p>This text is from a data variable: {{ message }}</p>
+      <p>This number is from a data variable: {{ number }}</p>
+      <p>
+        The number of flowers with images on this page is {{ flowersInMN.length }}
+      </p>
+
+      <!-- conditional rendering -->
+      <p v-if="number > 100">The number is greater than 100</p>
+      <!----------------------------------------------------------------->
+
+      <h2>Looping over arrays</h2>
+      <ul>
+        <li v-for="flower in flowers">{{ flower }}</li>
+      </ul>
+      <!----------------------------------------------------------------->
+
+      <h2>Showing data from an object</h2>
+
+      <p>
+        The name of the flower is {{ flowerInfo.name }}. It is often the color
+        {{ flowerInfo.color }}.
+      </p>
+      <p>Some uses of {{ flowerInfo.name }} are {{ flowerInfo.uses }}.</p>
+
+      <p v-if="flowerInfo.name === 'Rose'">
+        The flower info object's name is {{ flowerInfo.name }}.
+      </p>
+      <p v-else>
+        The flower info object's name is not Rose. Using a v-else is not
+        required if you don't need it.
+      </p>
+      <!----------------------------------------------------------------->
+
+      <h2>Looping over a list of objects</h2>
+      <table>
+        <tr>
+          <th>Flower</th>
+          <th>Minnesota native plant?</th>
+        </tr>
+        <tr v-for="flower in flowersInMN">
+          <td>{{ flower.name }}</td>
+          <td>{{ flower.livesInMN }}</td>
+        </tr>
+      </table>
+      <!----------------------------------------------------------------->
+
+      <h2>
+        Looping over a list of objects - plus <span class="mono">v-if</span> and
+        <span class="mono">v-bind</span>
+      </h2>
+      <table>
+        <tr>
+          <th>Flower</th>
+          <th>Minnesota native plant?</th>
+          <th>Image</th>
+        </tr>
+        <tr v-for="flower in flowersInMNImages">
+          <td>{{ flower.name }}</td>
+          <td>
+            <span v-if="flower.livesInMN">Yes!</span>
+            <span v-else>No</span>
+          </td>
+          <!-- use v-bind to set any HTML attributes -->
+          <td><img v-bind:src="flower.image" /></td>
+        </tr>
+      </table>
+      <!----------------------------------------------------------------->
+    </div>
+
+    <!-- this is the VIEWMODEL -->
+    <script>
+      // this creates a Vue instance
+      const app = Vue.createApp({
+        // data is the MODEL
+        // the data option for a component is a function & it returns an object.
+        // ES6 shorthand for --> data: function() {
+        data() {
+          return {
+            // Exmample data
+            message: 'Flower Page',
+            number: 101, // test for number: 20 also
+
+            // An array
+            flowers: ['Rose', 'Daisy', 'Bluebell'],
+
+            // An object
+            flowerInfo: {
+              name: 'Rose',
+              color: 'Pink',
+              uses: 'ornamental, culinary',
+            },
+
+            // An array of objects
+            flowersInMN: [
+              { name: 'Rose', livesInMN: true },
+              { name: 'California Poppy', livesInMN: false },
+              { name: 'Coneflower', livesInMN: true },
+              { name: 'Plumeria', livesInMN: false },
+            ],
+
+            // Another array of objects
+            flowersInMNImages: [
+              { name: 'Wild Rose', livesInMN: true, image: 'images/rose.png' },
+              {
+                name: 'California Poppy',
+                livesInMN: false,
+                image: 'images/ca_poppy.png',
+              },
+              {
+                name: 'Coneflower',
+                livesInMN: true,
+                image: 'images/coneflower.png',
+              },
+              {
+                name: 'Plumeria',
+                livesInMN: false,
+                image: 'images/plumeria.png',
+              },
+            ],
+          };
+        },
+        methods: {
+          // add here if needed
+        },
+        computed: {},
+      });
+
+      // Mount App: To mount the app into our DOM, which effectively
+      // plugs our app into the #app div in the html above
+      app.mount('#app');
+    </script>
+  </body>
+</html>
