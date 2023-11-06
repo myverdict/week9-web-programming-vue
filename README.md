@@ -21,9 +21,14 @@ Vue 3 Introduction
       <li>Shopping cart
         <ul>
           <li>Cart using Vanilla JS</li>
-          <li>Cart with Vue 3 (Vue 3: Options API)</li>
-          <li>Cart with Vue 3 Validation (Vue 3: Options API)</li>
-          <li>Cart with Vue 3 Watch (Vue 3: Options API)</li>
+          <li>Cart with Vue 3 (Vue 3: Options API)
+            <ul>
+              <li>Cart: V1</li>
+              <li>Cart: V2 with styling</li>
+              <li>Cart: V3 with Validation</li>
+              <li>Cart: V4 with Vue 3 watch</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
