@@ -7,10 +7,29 @@ Vue 3 Introduction
 <h2>Week 9 Labs: Vue 3 Introduction</h2>
 
 <ul>
+  <li>
+    <ul>
+      <li>Adding & clearing exclamation points (Vue 3: Options API)</li>
+      <li>Creating inputs (Vue 3: Options API)</li>
+      <li>Template tags (Vue 3: Options API)</li>
+      <li>Looping (Vue 3: Options API)
+        <ul>
+          <li>v-for</li>
+          <li>Looping task list from input: v-for</li>
+        </ul>
+      </li>
+      <li>Shopping cart
+        <ul>
+          <li>Cart using Vanilla JS</li>
+          <li>Cart with Vue 3 (Vue 3: Options API)</li>
+          <li>Cart with Vue 3 Validation (Vue 3: Options API)</li>
+          <li>Cart with Vue 3 Watch (Vue 3: Options API)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
   <li>Product purchase (Vue 3: Options API)</li>
-  <li>Adding & clearing exclamation points (Vue 3: Options API)</li>
-  <li>Creating inputs (Vue 3: Options API)</li>
-  <li>Shopping cart (Vue 3: Options API)</li>
+  <li>Dog API (Vue 3: Options API)</li>
   <li>Lab 8 repository (Vue 2)</li>
 </ul>
 
