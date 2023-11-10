@@ -8,6 +8,7 @@ Vue 3 Introduction
 
 <ul>
   <li>
+    Hello Vue
     <ul>
       <li>Adding & clearing exclamation points (Vue 3: Options API)</li>
       <li>Creating inputs (Vue 3: Options API)</li>
@@ -33,6 +34,7 @@ Vue 3 Introduction
       </li>
     </ul>
   </li>
+  <li>Console errors</li>
   <li>Product purchase (Vue 3: Options API)</li>
   <li>Dog API (Vue 3: Options API)</li>
   <li>Lab 8 repository (Vue 2)</li>

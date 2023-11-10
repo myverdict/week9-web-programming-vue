@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Errors</title>
+  </head>
+
+  <body>
+    <p>If you see the below error in dev tools,</p>
+
+    <img
+      src="./images/1.png"
+      data-d2l-editor-default-img-style="true"
+      style="max-width: 100%"
+      width="500px"
+    />
+
+    <p>
+      and a warning as below in the cli after running
+      <strong>npm run dev</strong>,
+    </p>
+
+    <p>
+      <img
+        src="./images/2.png"
+        data-d2l-editor-default-img-style="true"
+        style="max-width: 100%"
+        width="500px"
+      />
+    </p>
+
+    <p>
+      then check your code for phantom lines, example, the one on line 2 as
+      shown below;
+    </p>
+
+    <p>delete line 2 to fix the error.</p>
+    <p>
+      <img
+        src="./images/3.png"
+        data-d2l-editor-default-img-style="true"
+        style="max-width: 100%"
+      />
+    </p>
+
+    What happened?
+    <p>
+      If you are typing code and you use a variable called 'response' without
+      defining it, (or your definition has a typo) then VSCode will assume that
+      you mean a variable called 'response' in the Express framework and
+      helpfully add that import.
+    </p>
+
+    <p>
+      Unfortunately, that is not what you want to do - the correct fix is to
+      define your response variable or correct your spelling.
+    </p>
+  </body>
+</html>
